@@ -11,13 +11,19 @@ from dataclasses import dataclass
 from pathlib import Path
 
 class DataIngestionConfig:
+    print("inside data ingestion config")
     raw_data_path:str=os.path.join("artifacts","raw.csv")
     train_data_path:str=os.path.join("artifacts","train.csv")
     test_data_path:str=os.path.join("artifacts","test.csv")
 
+    print("Percorso dei dati grezzi:", raw_data_path)
+    print("Percorso dei dati di training:", train_data_path)
+    print("Percorso dei dati di test:", test_data_path)
+
 
 class DataIngestion:
     def __init__(self):
+        print("inside data ingestion")
         self.ingestion_config=DataIngestionConfig()
         
     
@@ -54,4 +60,7 @@ class DataIngestion:
         except Exception as e:
            logging.info("exception during occured at data ingestion stage")
            raise customexception(e,sys)
+
+# Path: src/DimondPricePrediction/components/data_transformation.py
+
     

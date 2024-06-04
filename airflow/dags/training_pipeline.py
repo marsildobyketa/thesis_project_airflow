@@ -15,7 +15,7 @@ with DAG(
     schedule="@weekly",  # here you can test based on hour or mints but make sure here you container is up and running
     start_date=pendulum.datetime(2024, 1, 17, tz="UTC"),
     catchup=False,
-    tags=["machine_learning ", "classification", "gemstone"],
+    tags=["machine_learning ", "classification", "gem"],
 ) as dag:
 
     dag.doc_md = __doc__

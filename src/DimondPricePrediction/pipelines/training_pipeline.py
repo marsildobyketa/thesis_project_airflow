@@ -1,9 +1,6 @@
 from src.DimondPricePrediction.components.data_ingestion import DataIngestion
-
 from src.DimondPricePrediction.components.data_transformation import DataTransformation
-
 from src.DimondPricePrediction.components.model_trainer import ModelTrainer
-
 from src.DimondPricePrediction.components.model_evaluation import ModelEvaluation
 
 
@@ -22,7 +19,6 @@ class TrainingPipeline:
             raise customexception(e,sys)
         
     def start_data_transformation(self,train_data_path,test_data_path):
-        
         try:
             data_transformation = DataTransformation()
             train_arr,test_arr=data_transformation.initialize_data_transformation(train_data_path,test_data_path)
@@ -41,6 +37,12 @@ class TrainingPipeline:
         try:
             train_data_path,test_data_path=self.start_data_ingestion()
             train_arr,test_arr=self.start_data_transformation(train_data_path,test_data_path)
+            print("cio")
             self.start_model_training(train_arr,test_arr)
         except Exception as e:
             raise customexception(e,sys)
+        
+
+if __name__=="__main__":
+    training_pipeline=TrainingPipeline()
+    training_pipeline.start_trainig()
