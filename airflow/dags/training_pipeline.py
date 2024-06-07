@@ -5,6 +5,8 @@ import pendulum
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from src.DimondPricePrediction.pipelines.training_pipeline import TrainingPipeline
+import os
+import boto3
 
 training_pipeline = TrainingPipeline()
 
@@ -33,6 +35,31 @@ with DAG(
         # Your implementation for pushing data to S3
         pass
 
+    def push_model_to_s3(**kwargs):
+    # Ottieni il percorso del modello dalla XCom
+        ti = kwargs["ti"]
+        model_path = ti.xcom_pull(task_ids="model_trainer", key="model_path")
+
+        # Configura le credenziali e la sessione di AWS
+        aws_access_key_id = "YOUR_ACCESS_KEY_ID"
+        aws_secret_access_key = "YOUR_SECRET_ACCESS_KEY"
+        region_name = "YOUR_REGION_NAME"
+        bucket_name = "YOUR_BUCKET_NAME"
+
+        # Inizializza il client S3
+        s3_client = boto3.client(
+            "s3",
+            aws_access_key_id=aws_access_key_id,
+            aws_secret_access_key=aws_secret_access_key,
+            region_name=region_name
+        )
+
+        # Carica il file del modello sul bucket S3
+        model_name = os.path.basename(model_path)
+        s3_client.upload_file(model_path, bucket_name, model_name)
+
+        print("Model uploaded to S3 successfully!")
+
     def data_transformations(**kwargs):
         ti = kwargs["ti"]
         data_ingestion_artifact = ti.xcom_pull(
@@ -60,19 +87,11 @@ with DAG(
         test_arr = np.array(data_transformation_artifact["test_arr"])
         training_pipeline.start_model_training(train_arr, test_arr)
 
-    ## you have to config azure blob
-    def push_data_to_azureblob(**kwargs):
-        import os
-
-        bucket_name = "reposatiory_name"
-        artifact_folder = "/app/artifacts"
-        # you can save it ti the azure blob
-        # os.system(f"aws s3 sync {artifact_folder} s3:/{bucket_name}/artifact")
-
     data_ingestion_task = PythonOperator(
         task_id="data_ingestion",
         python_callable=data_ingestion,
     )
+
     data_ingestion_task.doc_md = dedent(
         """\
     #### Ingestion task
@@ -84,6 +103,7 @@ with DAG(
         task_id="data_transformation",
         python_callable=data_transformations,
     )
+
     data_transform_task.doc_md = dedent(
         """\
     #### Transformation task

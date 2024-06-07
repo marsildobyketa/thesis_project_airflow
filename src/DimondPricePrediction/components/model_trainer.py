@@ -8,6 +8,8 @@ from src.DimondPricePrediction.exception import customexception
 from dataclasses import dataclass
 from src.DimondPricePrediction.utils.utils import save_object
 from src.DimondPricePrediction.utils.utils import evaluate_model
+from src.DimondPricePrediction.components.model_evaluation import ModelEvaluation
+from src.DimondPricePrediction.utils.utils import load_object
 
 from sklearn.linear_model import LinearRegression, Ridge,Lasso,ElasticNet
 
@@ -60,6 +62,13 @@ class ModelTrainer:
                  file_path=self.model_trainer_config.trained_model_file_path,
                  obj=best_model
             )
+
+            model_validation = ModelEvaluation()
+            model_validation.initiate_model_evaluation(train_array,test_array)
+            
+
+
+
           
 
         except Exception as e:

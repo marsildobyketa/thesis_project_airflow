@@ -8,6 +8,8 @@ services:
     container_name: gemstone-prediction-airflow
     ports:
       - "8080:8080"
+    volumes:
+      - shared-data:/app/shared-data
     
   flaskapp:
     build:
@@ -17,4 +19,9 @@ services:
     container_name: gemstone-prediction-flask
     ports:
       - "80:80"
+    volumes:
+      - shared-data:/app/shared-data
+
+volumes:
+  shared-data:
     
