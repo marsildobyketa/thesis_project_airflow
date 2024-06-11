@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/marsildobyketa/Documents/thesis_project_airflow/mlruns/0/87fdde24c5a64f67a7f16c68def75f06/artifacts
+end_time: 1717693976750
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 87fdde24c5a64f67a7f16c68def75f06
+run_name: bald-skink-920
+run_uuid: 87fdde24c5a64f67a7f16c68def75f06
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717693968804
+status: 3
+tags: []
+user_id: marsildobyketa

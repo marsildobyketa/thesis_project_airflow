@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/marsildobyketa/Documents/thesis_project_airflow/mlruns/0/bf51eca869dd478e8105fa30c9eb960d/artifacts
+end_time: 1717694335891
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bf51eca869dd478e8105fa30c9eb960d
+run_name: fortunate-ray-786
+run_uuid: bf51eca869dd478e8105fa30c9eb960d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717694327636
+status: 3
+tags: []
+user_id: marsildobyketa

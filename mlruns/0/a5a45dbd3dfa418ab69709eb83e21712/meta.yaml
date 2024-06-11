@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/marsildobyketa/Documents/thesis_project_airflow/mlruns/0/a5a45dbd3dfa418ab69709eb83e21712/artifacts
+end_time: 1717694566629
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a5a45dbd3dfa418ab69709eb83e21712
+run_name: sneaky-hog-104
+run_uuid: a5a45dbd3dfa418ab69709eb83e21712
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717694558448
+status: 3
+tags: []
+user_id: marsildobyketa
